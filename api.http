@@ -1,0 +1,25 @@
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "Admin",
+    "email": "admin@user.com",
+    "password": "admin",
+    "role": "ADMIN"
+}
+
+###
+GET http://localhost:3000/users
+
+###
+
+GET http://localhost:3000/users/cmgf50n5z0002cvq1aeirf2t6
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@user.com",
+    "password": "admin"
+}
