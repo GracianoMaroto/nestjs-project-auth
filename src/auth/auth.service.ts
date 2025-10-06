@@ -32,7 +32,11 @@ export class AuthService {
             throw new Error('Invalid credentials')
         }
 
-        const token = this.jwtService.sign({name: user.name, email: user.email});
+        const token = this.jwtService.sign({
+            name: user.name, 
+            email: user.email, 
+            role: user.role, 
+            sub: user.id});
         return { acess_token: token}
     }
 }
