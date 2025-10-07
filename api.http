@@ -1,26 +1,66 @@
+### 🧑‍💼 CREATE ADMIN USER
 POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "name": "Admin",
-    "email": "admin@user.com",
-    "password": "admin",
-    "role": "ADMIN"
+  "name": "Admin",
+  "email": "admin@user.com",
+  "password": "admin",
+  "role": "ADMIN"
 }
 
-###
+### 👤 CREATE READER USER
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwicm9sZSI6IkFETUlOIiwic3ViIjoiY21nZjUwbjV6MDAwMmN2cTFhZWlyZjJ0NiIsImlhdCI6MTc1OTgzNzc1MiwiZXhwIjoxNzU5ODQ0OTUyfQ.UBvnskixpaisREXIk_R2YgYgn0UcJ7PJPgv89ohMCJw
+
+{
+  "name": "Reader",
+  "email": "reader@user.com",
+  "password": "reader",
+  "role": "READER"
+}
+
+### 📋 GET ALL USERS
 GET http://localhost:3000/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwicm9sZSI6IkFETUlOIiwic3ViIjoiY21nZjUwbjV6MDAwMmN2cTFhZWlyZjJ0NiIsImlhdCI6MTc1OTc1ODM0NywiZXhwIjoxNzU5NzY1NTQ3fQ.Baz9019W0K7pu2OeRGSETnByHb5IE9jEw696aEBUqw4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwicm9sZSI6IkFETUlOIiwic3ViIjoiY21nZjUwbjV6MDAwMmN2cTFhZWlyZjJ0NiIsImlhdCI6MTc1OTgzNzc1MiwiZXhwIjoxNzU5ODQ0OTUyfQ.UBvnskixpaisREXIk_R2YgYgn0UcJ7PJPgv89ohMCJw
 
-###
-
+### 🔍 GET USER BY ID
 GET http://localhost:3000/users/cmgf50n5z0002cvq1aeirf2t6
 
-###
+### 🔐 LOGIN (ADMIN)
 POST http://localhost:3000/auth/login
 Content-Type: application/json
 
 {
-    "email": "admin@user.com",
-    "password": "admin"
+  "email": "admin@user.com",
+  "password": "admin"
 }
+
+### 🔐 LOGIN (READER)
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "reader@user.com",
+  "password": "reader"
+}
+
+### 📝 CREATE POST
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwicm9sZSI6IkFETUlOIiwic3ViIjoiY21nZjUwbjV6MDAwMmN2cTFhZWlyZjJ0NiIsImlhdCI6MTc1OTg0Nzc0NywiZXhwIjoxNzU5ODU0OTQ3fQ.f1CW6nCTdl8ur5aBGDHUetcbsaY9-Piu6cM3i4UWkso
+
+{
+  "title": "My second post",
+  "content": "This is the content of my post",
+  "published": false
+}
+
+### 📚 GET ALL POSTS
+GET http://localhost:3000/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUmVhZGVyIiwiZW1haWwiOiJyZWFkZXJAdXNlci5jb20iLCJyb2xlIjoiUkVBREVSIiwic3ViIjoiY21nZ2k2b255MDAwMGN2dDRiemQzYXVhOSIsImlhdCI6MTc1OTg0NzkyNCwiZXhwIjoxNzU5ODU1MTI0fQ.ziPrWitDgs4aJ0pyQNKcc_-oeRwE_191YYEZZY593nY
+
+
+### 🪪 ADMIN TOKEN (NOT WORKING)
+# @tokenAdmin = {{adminlogin.response.body.access_token}}

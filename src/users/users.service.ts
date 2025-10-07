@@ -1,14 +1,23 @@
-import { Injectable } from '@nestjs/common';
+/* eslint-disable prettier/prettier */
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import bcrypt from 'bcrypt';
+import { CaslAbilityService } from 'src/casl/casl-ability/casl-ability.service';
 
 @Injectable()
 export class UsersService {
-  constructor(private prismaService: PrismaService) {}
+  constructor(
+    private prismaService: PrismaService,
+    private abilityService: CaslAbilityService) {}
 
   create(createUserDto: CreateUserDto) {
+    const ability = this.abilityService.ability;
+    if(!ability.can('create', 'User')){
+      throw new UnauthorizedException('Unauthorized')
+    }
+
     return this.prismaService.user.create({
       data: {
         ...createUserDto, //estou puxando os dados do dto para criação de usuario (nome, email, role, senha).
