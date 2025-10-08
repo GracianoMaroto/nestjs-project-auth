@@ -41,6 +41,12 @@ export class CaslAbilityService {
 
     createForUser(user: User){
         const builder = new AbilityBuilder<AppAbility>(createPrismaAbility);
+        // if (Array.isArray(user.permissions)) {
+        //     user.permissions.forEach(permission => {
+        //         builder.can(permission?.action, permission?.resource, permission?.condition);
+        //     });
+        //     }
+        // Could not use, type error because of forEach
         rolePermissionsMap[user.role](user, builder);
         this.ability = builder.build();
         return this.ability

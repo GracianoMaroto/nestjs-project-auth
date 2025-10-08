@@ -9,6 +9,24 @@ Content-Type: application/json
   "role": "ADMIN"
 }
 
+### 🧑‍💼 CREATE WRITER USER
+POST http://localhost:3000/users
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJlbWFpbCI6ImFkbWluQHVzZXIuY29tIiwicm9sZSI6IkFETUlOIiwic3ViIjoiY21nZjUwbjV6MDAwMmN2cTFhZWlyZjJ0NiIsInBlcm1pc3Npb25zIjpbWyJtYW5hZ2UiLCJhbGwiXV0sImlhdCI6MTc1OTkyNTczMSwiZXhwIjoxNzU5OTMyOTMxfQ.LXYBROsb_3vVnP9dfOBc_v-69FZix-70oQvnwmx5ZZM
+
+{
+  "name": "Writer",
+  "email": "writer@user.com",
+  "password": "writer",
+  "role": "WRITER",
+  "permissions": [
+    {
+      "action": "read",
+      "resource": "User"
+    }
+  ]
+}
+
 ### 👤 CREATE READER USER
 POST http://localhost:3000/users
 Content-Type: application/json
@@ -62,5 +80,5 @@ GET http://localhost:3000/posts
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiUmVhZGVyIiwiZW1haWwiOiJyZWFkZXJAdXNlci5jb20iLCJyb2xlIjoiUkVBREVSIiwic3ViIjoiY21nZ2k2b255MDAwMGN2dDRiemQzYXVhOSIsImlhdCI6MTc1OTg0NzkyNCwiZXhwIjoxNzU5ODU1MTI0fQ.ziPrWitDgs4aJ0pyQNKcc_-oeRwE_191YYEZZY593nY
 
 
-### 🪪 ADMIN TOKEN (NOT WORKING)
+### VAR ADMIN TOKEN (NOT WORKING, COULD NOT GET THE TOKEN RIGHT. TYPE ERROR)
 # @tokenAdmin = {{adminlogin.response.body.access_token}}

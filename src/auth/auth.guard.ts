@@ -31,7 +31,8 @@ export class AuthGuard implements CanActivate {
         name: string; 
         email: string;
         role: Roles;     
-        sub: string;        
+        sub: string;  
+        permissions: string[];      
       }>(token, {algorithms: ['HS256']});
       //pegar o usuario e colocar na request.
       const user = await this.prismaService.user.findUnique({

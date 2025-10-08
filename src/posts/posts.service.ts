@@ -62,7 +62,19 @@ export class PostsService {
     })
   }
 
-  remove(id: string) {
+  async remove(id: string) {
+
+    const ability = this.abilityService.ability;
+    const post = await this.prismaService.post.findUnique({
+      where: { 
+        id, 
+        AND: [accessibleBy(ability, 'delete').Post],
+      },
+    });
+    if(!post){
+      throw new Error('Post not found')
+    }
+    
     return this.prismaService.post.delete({where: { id }})
   }
 }

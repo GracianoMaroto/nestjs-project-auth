@@ -5,6 +5,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { PrismaService } from '../prisma/prisma.service';
 import bcrypt from 'bcrypt';
 import { CaslAbilityService } from 'src/casl/casl-ability/casl-ability.service';
+import { accessibleBy } from '@casl/prisma';
 
 @Injectable()
 export class UsersService {
@@ -27,7 +28,16 @@ export class UsersService {
   }
 
   findAll() {
-    return this.prismaService.user.findMany();
+    const ability = this.abilityService.ability;
+
+    if(!ability.can('read', 'User')){
+      throw new Error('Unauthorized')
+    }
+    return this.prismaService.user.findMany({
+      where: {
+              AND: [accessibleBy(ability, 'read').User],
+            },
+    });
   }
 
   findOne(id: string) {
